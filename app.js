@@ -279,6 +279,8 @@ function receivedMessage(event) {
           conventional.bye(senderID, PAGE_ACCESS_TOKEN)
         } else if (intent == 'say-thanks') {
           conventional.thanks(senderID, PAGE_ACCESS_TOKEN)
+        } else if (intent == 'wru') {
+          conventional.presentation(senderID, PAGE_ACCESS_TOKEN)
         } else if (intent == 'crypto_info') {
           cryptoInfo.research(senderID, PAGE_ACCESS_TOKEN, response.source)
         } else if (intent == 'crypto_init') {
