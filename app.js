@@ -18,6 +18,7 @@ const
   https = require('https'),
   request = require('request'),
   cryptoInfo = require('./controllers/crypto-info.js'),
+  conventional = require('./controllers/conventional.js'),
   ccParser = require('./controllers/cryptocompare-parser.js')
 
 var Twitter = require('twitter')
@@ -273,11 +274,11 @@ function receivedMessage(event) {
       recastClient.analyseText(messageText).then(function(response) {
         var intent = response.intent().slug
         if (intent == 'greetings') {
-          sayHello(senderID)
+          conventional.hello(senderID, PAGE_ACCESS_TOKEN)
         } else if (intent == 'goodbye') {
-          sendTextMessage(senderID, "Bye, see you soon!")
+          conventional.bye(senderID, PAGE_ACCESS_TOKEN)
         } else if (intent == 'say-thanks') {
-          sendTextMessage(senderID, "Your welcome 😊")
+          conventional.thanks(senderID, PAGE_ACCESS_TOKEN)
         } else if (intent == 'crypto_info') {
           cryptoInfo.research(senderID, PAGE_ACCESS_TOKEN, response.source)
         } else if (intent == 'crypto_init') {
@@ -829,7 +830,12 @@ function sayHello(senderID) {
     json: true
   }, function (error, response, body) {
     if (!error && response.statusCode == 200) {
-      sendTextMessage(senderID, "Hey " + body.first_name)
+      function getRandomInt(max) {
+        return Math.floor(Math.random() * Math.floor(max));
+      }
+      var text = ["Hey ", "Hi ", "Hello ", "Yop ", "Morning ", "Welcome ", "Yo ", "Yep ", "Good morning "]
+      var random = getRandomInt(text.length)
+      sendTextMessage(senderID, text[random] + body.first_name)
     } else {
       console.log(error)
     }
