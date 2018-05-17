@@ -49,4 +49,26 @@ module.exports = {
             })
         }
     },
+    pricing: (senderID, PAGE_ACCESS_TOKEN, query) => {
+        var ticker = checkTicker(query)
+        if (!ticker) {
+            var messageText = {
+                status: 'error',
+                message: '😱 Sorry! I don\'t know this Crypto.',
+                ticker: null,
+                card: null
+            }
+            messageGenerator.sendTextMessage(senderID, PAGE_ACCESS_TOKEN, messageText.message)
+        } else {
+            messageGenerator.sendTextMessage(senderID, PAGE_ACCESS_TOKEN, "I'm looking the price of "+ticker.name)
+            request({
+                uri: 'https://min-api.cryptocompare.com/data/price?fsym='+ticker.ticker.toUpperCase()+'&tsyms=USD,EUR',
+                method: 'GET'
+            }, (error, response, price) => {
+                var priceParse = JSON.parse(price)
+                var messageText = "Recent "+ticker.ticker+" price: "+priceParse["USD"]+" $ / "+priceParse["EUR"]+" €"
+                messageGenerator.sendTextMessage(senderID, PAGE_ACCESS_TOKEN, messageText)
+            })
+        }
+    },
 }

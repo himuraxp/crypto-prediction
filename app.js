@@ -285,6 +285,8 @@ function receivedMessage(event) {
           cryptoInfo.research(senderID, PAGE_ACCESS_TOKEN, response.source)
         } else if (intent == 'crypto_init') {
           ccParser.initDB(senderID, PAGE_ACCESS_TOKEN)
+        } else if (intent == 'crypto_price') {
+          cryptoInfo.pricing(senderID, PAGE_ACCESS_TOKEN, response.source)
         } else {
           conventional.dontknow(senderID, PAGE_ACCESS_TOKEN, messageText)
         }
