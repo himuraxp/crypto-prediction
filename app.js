@@ -276,6 +276,8 @@ function receivedMessage(event) {
           sayHello(senderID)
         } else if (intent == 'goodbye') {
           sendTextMessage(senderID, "Bye, see you soon!")
+        } else if (intent == 'say-thanks') {
+          sendTextMessage(senderID, "Your welcome 😊")
         } else if (intent == 'crypto_info') {
           cryptoInfo.research(senderID, PAGE_ACCESS_TOKEN, response.source)
         } else if (intent == 'crypto_init') {
