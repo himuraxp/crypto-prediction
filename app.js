@@ -284,7 +284,7 @@ function receivedMessage(event) {
         } else if (intent == 'crypto_init') {
           ccParser.initDB(senderID, PAGE_ACCESS_TOKEN)
         } else {
-          sendTextMessage(senderID, messageText)
+          conventional.dontknow(senderID, PAGE_ACCESS_TOKEN, messageText.message)
         }
       }).catch(function(error) {
         console.log(error)

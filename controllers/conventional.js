@@ -56,4 +56,20 @@ module.exports = {
             }
         })
     },
+    dontknow: (senderID, PAGE_ACCESS_TOKEN, query) => {
+        request({
+            uri: `https://graph.facebook.com/v2.9/${senderID}`,
+            qs: { access_token: PAGE_ACCESS_TOKEN },
+            method: 'GET',
+            json: true
+        }, (error, response, body) => {
+            if (!error && response.statusCode == 200) {
+                var text = ["I do not understand"]
+                var random = getRandomInt(text.length)
+                messageGenerator.sendTextMessage(senderID, PAGE_ACCESS_TOKEN, text[random]+" '"+query+"'")
+            } else {
+                console.log(error)
+            }
+        })
+    },
 }
