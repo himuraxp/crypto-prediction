@@ -81,7 +81,6 @@ module.exports = {
         }, (error, response, body) => {
             if (!error && response.statusCode == 200) {
                 var text = "I am HimuraBot. \n\nMy designer Yohann Winchester has just created me so I do not have great faculties at the moment. But my knowledge will increase with time.\n\nMy skills:\n- Give you information about crypto assets (ex: What is bitcoin?)\n- I can show you recent weets with the hashtag of your choice (ex: #ethereum)\nI hope I'll be useful"
-                var random = getRandomInt(text.length)
                 messageGenerator.sendTextMessage(senderID, PAGE_ACCESS_TOKEN, text)
             } else {
                 console.log(error)
