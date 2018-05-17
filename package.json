@@ -1,15 +1,28 @@
 {
-  "name": "crypto-prediction",
+  "name": "messenger-get-started",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Get started example for Messenger Platform",
+  "main": "crypto-prediction.js",
   "scripts": {
+    "start": "node crypto-prediction.js",
+    "lint": "jshint --exclude node_modules .",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fbsamples/messenger-platform-samples.git"
+  },
+  "author": "Facebook",
   "license": "ISC",
   "dependencies": {
-    "body-parser": "^1.18.3",
-    "express": "^4.16.3"
+    "body-parser": "^1.15.0",
+    "config": "^1.20.4",
+    "ejs": "^2.4.2",
+    "express": "^4.13.4",
+    "recastai": "^3.3.1",
+    "request": "^2.72.0"
+  },
+  "engines": {
+    "node": "~4.1.2"
   }
 }
